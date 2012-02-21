@@ -8,9 +8,6 @@ filetype plugin indent on
 "
 
 set history=700
-filetype plugin on
-filetype indent on
-
 set autoread
 set hidden
 let mapleader = ","
@@ -51,9 +48,6 @@ set shell=/bin/bash
 if has("gui_running")
 	set guioptions-=T
 	set t_Co=256
-	set background=dark
-	let g:zenburn_high_Contrast=1
-	set nonu
     colors ir_black
     colorscheme ir_black
 else
@@ -83,12 +77,6 @@ try
 	set undofile
 catch
 endtry
-
-
-set expandtab
-set shiftwidth=4
-set tabstop=4
-set smarttab
 
 set lbr
 set tw=500
@@ -124,7 +112,7 @@ map <leader>cd :cd %:p:h<cr>
 set laststatus=2
 
 if version >= 700
-    au InsertEnter * hi Statusline term=reverse ctermbg=5 gui=undercurl guisp=Red
+    au InsertEnter * hi Statusline term=reverse ctermbg=5 guisp=Red gui=undercurl 
     au InsertLeave * hi Statusline term=reverse ctermfg=0 ctermbg=2 gui=bold,reverse
 endif
 
@@ -143,6 +131,29 @@ function! HasPaste()
         return ''
     endif
 endfunction
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Parenthesis/bracket expanding
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+vnoremap $1 <esc>`>a)<esc>`<i(<esc>
+vnoremap $2 <esc>`>a]<esc>`<i[<esc>
+vnoremap $3 <esc>`>a}<esc>`<i{<esc>
+vnoremap $$ <esc>`>a"<esc>`<i"<esc>
+vnoremap $q <esc>`>a'<esc>`<i'<esc>
+vnoremap $e <esc>`>a"<esc>`<i"<esc>
+
+" Map auto complete of (, ", ', [
+inoremap $1 ()<esc>i
+inoremap $2 []<esc>i
+inoremap $3 {}<esc>i
+inoremap $4 {<esc>o}<esc>O
+inoremap $q ''<esc>i
+inoremap $e ""<esc>i
+inoremap $t <><esc>i
+
+
+
 
 """"""""""""""""""""""""""""""""""""
 " => Editing mappings
@@ -232,10 +243,12 @@ let NERDTreeIgnore = ['\.vim$','\~$','\.png$','\.bmp$','\.jpg$','\.gif$','\.psd$
 let NERDTreeMouseMode = 3
 
 """"""""""""""""""""""
-" => bufExplorer plugin
+" => bufExplorer plugin  
 """"""""""""""""""""""
 let g:bufExplorerDefaultHelp=0
 let g:bufExplorerShowRelativePath=1
+let g:bufExplorerSplitBelow=1
+let g:bufExplorerSplitRight=1
 map <leader>o :BufExplorer<cr>
 
 """""""""""""""""""""""""
@@ -259,13 +272,59 @@ let g:acp_behaviorSnipmateLength = 1
 " => Tagbar
 """""""""""""""""""""""""""
 let g:tagbar_usearrows = 1
-
-
-
 nnoremap <leader>l :TagbarToggle<CR>
 
+"""""""""""""""""""""""""""
+" VIm grep
+"""""""""""""""""""""""""""
+let Grep_Skip_Dirs = 'RCS CVS SCCS .svn generated'
+set grepprg=/usr/bin/grep\ -nH
 
-autocmd FileType html :setlocal sw=2 ts=2 sts=2
+"""""""""""""""""""""""""""
+"  SnipMate
+"""""""""""""""""""""""""""
+:autocmd FileType python set ft=python.django
+:autocmd FileType html set ft=htmldjango.html 
+
+:autocmd FileType html setfiletype htmldjango
+
+
+"""""""""""""""""""""""""""
+"  Surround
+"""""""""""""""""""""""""""
+let g:surround_{char2nr("b")} = "{% block\1 \r..*\r &\1%}\r{% endblock %}"
+let g:surround_{char2nr("i")} = "{% if\1 \r..*\r &\1%}\r{% endif %}"
+let g:surround_{char2nr("w")} = "{% with\1 \r..*\r &\1%}\r{% endwith %}"
+let g:surround_{char2nr("c")} = "{% comment\1 \r..*\r &\1%}\r{% endcomment %}"
+let g:surround_{char2nr("f")} = "{% for\1 \r..*\r &\1%}\r{% endfor %}"
+let g:surround_{char2nr("v")} = "{{ \1 \r..*\r &\1\r }}"
+
+"""""""""""""""""""""""""""
+"  Project
+"""""""""""""""""""""""""""
+
+nmap <silent> <leader>p :Project<cr>
+
+
+
+
+
+""""""""""" Randvm stuff  """"""""""""""""""
+
+" tab space stuff
+set expandtab
+set smarttab
+set tabstop=4 shiftwidth=4
+
+
+""""""" emulate textmate's shift left/right key commands
+if has("gui_macvim")
+    nmap <D-[> <<
+    nmap <D-]> >>
+    vmap <D-[> <gv
+    vmap <D-]> >gv
+endif
+
 hi LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 set cursorline
 hi CursorLine cterm=NONE ctermbg=DarkGreen gui=NONE guibg=DarkGreen
@@ -279,17 +338,17 @@ nmap <silent> <leader>ev :e $MYGVIMRC<cr>
 nmap <silent> <leader>sv :so $MYGVIMRC<cr>
 nmap <silent> <leader>z :ZoomWin<cr>
 
-nmap <leader><leader>f :cd ~/FiveStars/github/fivestars/
-
-nmap <silent> <leader>p :NERDTree fweb<cr>
-
-nmap <leader><leader>ff :split ~/FiveStars/github/fivestars/loyalty
-nmap <leader><leader>fs :split
+nmap <leader><leader>f :cd ~/FiveStars/github/fivestars/loyalty<cr>
+nmap <leader><leader>cd :cd ~/FiveStars/github/fivestars/
 
 
+nmap <leader>bs :BufExplorerHorizontalSplit<CR>
+nmap <leader>bv :BufExplorerVerticalSplit<CR>
 
 if has("gui_macvim")
 	macmenu &File.New\ Window key=<nop>
 	macmenu &File.New\ Tab key=<D-n>
 	map <D-t> :CommandT<CR>
 endif
+
+
