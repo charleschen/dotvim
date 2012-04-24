@@ -1,11 +1,13 @@
 call pathogen#infect()
 call pathogen#helptags()
-syntax on
+syntax enable
 filetype plugin indent on
 
 
 " config from amix.dk
 "
+
+set nocompatible
 
 set history=700
 set autoread
@@ -17,7 +19,7 @@ let g:mapleader = ","
 nmap <leader>w :w!<cr>
 
 " Set working directory to current file
-autocmd BufEnter * lcd %:p:h
+" autocmd BufEnter * lcd %:p:h
 
 """"""""""""""""""""""""""
 " Vim user interface
@@ -27,6 +29,8 @@ set wildmenu
 set ruler
 set cmdheight=2
 set hid
+
+set cc=100
 
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
@@ -45,16 +49,21 @@ set mat=2
 set gfn=Menlo:h12
 set shell=/bin/bash
 
-if has("gui_running")
-	set guioptions-=T
-	set t_Co=256
-    colors ir_black
-    colorscheme ir_black
-else
-	colorscheme zellner
-	set background=dark
-	set nonu
-endif
+colorscheme solarized 
+set background=light
+set t_Co=256
+
+"if has("gui_running")
+"	set guioptions-=T
+"	set t_Co=256
+"    colors ir_black
+"    "colorscheme ir_black
+"    set background=dark
+"else
+"	"colorscheme zellner
+"	set background=dark
+"	set nonu
+"endif
 
 set encoding=utf8
 try
@@ -159,10 +168,6 @@ inoremap $t <><esc>i
 " => Editing mappings
 "
 
-nmap <D-j> mz:m+<cr>`z
-nmap <D-k> mz:m-2<cr>`z
-vmap <D-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <D-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 func! DeleteTrailingWS()
     exe "normal mz"
@@ -284,10 +289,8 @@ set grepprg=/usr/bin/grep\ -nH
 "  SnipMate
 """""""""""""""""""""""""""
 :autocmd FileType python set ft=python.django
-:autocmd FileType html set ft=htmldjango.html 
-
-:autocmd FileType html setfiletype htmldjango
-
+:autocmd FileType html set ft=html.djangohtml
+:autocmd FileType soy set ft=html
 
 """""""""""""""""""""""""""
 "  Surround
@@ -305,11 +308,66 @@ let g:surround_{char2nr("v")} = "{{ \1 \r..*\r &\1\r }}"
 
 nmap <silent> <leader>p :Project<cr>
 
+"""""""""""""""""""""""""""
+"  Vimwiki
+"""""""""""""""""""""""""""
+nmap <silent><Leader>w :VimwikiIndex<cr>
+
+"""""""""""""""""""""""""""
+"  Powerline
+"""""""""""""""""""""""""""
+
+"set Powerline_cache_enabled = 1
+"set g:Powerline_symbols = unicode
+"set Powerline_symbols = 'Menlo'
+let g:Powerline_cache_enabled = 1
+let g:Powerline_symobls = 'fancy'
+
+""""""""""""""""""""""""""
+" Ack
+""""""""""""""""""""""""""
+
+nmap <D-l> :Ack 
+
+""""""""""""""""""""""""""
+" Vimroom
+""""""""""""""""""""""""""
+let g:vimroom_guibackground = "#fdf6e3"
+let g:vimroom_width = 100
+let g:vimroom_sidebar_height = 1
+
+nnoremap <silent><Leader>v :VimroomToggle<CR>
 
 
+""""""""""""""""""""""""""
+" Tabman
+""""""""""""""""""""""""""
+
+map <silent><leader>t :TMToggle<CR>
+"let g:tabman_toggle = '<leader>mt'
+"let g:tabman_focus  = '<leader>mf'
+let g:tabman_width = 25
+let g:tabman_side = 'left'
+
+""""""""""" Chrome reload """""""""""""""
+function! ChromeReload()
+python << EOF
+from subprocess import call
+browser = """
+tell application "Google Chrome" to tell the active tab of its first window
+    reload
+end tell
+tell application "Google Chrome" to activate
+"""
+call(['osascript', '-e', browser])
+EOF
+endfunction 
 
 
-""""""""""" Randvm stuff  """"""""""""""""""
+map <leader>r :call ChromeReload()<CR>
+
+
+""""""""""" Randvm stuff  """""""""""""""
 
 " tab space stuff
 set expandtab
@@ -317,17 +375,36 @@ set smarttab
 set tabstop=4 shiftwidth=4
 
 
-""""""" emulate textmate's shift left/right key commands
 if has("gui_macvim")
+    " emulate textmate's shift left/right key commands
     nmap <D-[> <<
     nmap <D-]> >>
     vmap <D-[> <gv
     vmap <D-]> >gv
+
+    " Move line up or down (visual mode too)
+    nmap <D-j> mz:m+<cr>`z
+    nmap <D-k> mz:m-2<cr>`z
+    vmap <D-j> :m'>+<cr>`<my`>mzgv`yo`z
+    vmap <D-k> :m'<-2<cr>`>my`<mzgv`yo`z
 endif
 
-hi LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+
+
+if has("gui_macvim")
+    inoremap <D-CR> 
+endif
+
+"""""""" switch osx windows with swipes
+if has("gui_macvim")
+    nnoremap <silent> <SwipeLeft> :macaction _cycleWindowsBackwards:<CR>
+    nnoremap <silent> <SwipeRIght> :macaction _cycleWindows:<CR>
+endif
+
+""""" sets up line numbering and cursorline colors
+hi LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE 
 set cursorline
-hi CursorLine cterm=NONE ctermbg=DarkGreen gui=NONE guibg=DarkGreen
+"hi CursorLine cterm=NONE ctermbg=DarkGreen gui=NONE guibg=Grey70
 set number
 
 nmap <silent> <leader>/ :nohlsearch<CR>
@@ -341,7 +418,6 @@ nmap <silent> <leader>z :ZoomWin<cr>
 nmap <leader><leader>f :cd ~/FiveStars/github/fivestars/loyalty<cr>
 nmap <leader><leader>cd :cd ~/FiveStars/github/fivestars/
 
-
 nmap <leader>bs :BufExplorerHorizontalSplit<CR>
 nmap <leader>bv :BufExplorerVerticalSplit<CR>
 
@@ -351,4 +427,13 @@ if has("gui_macvim")
 	map <D-t> :CommandT<CR>
 endif
 
+" navigate splits with command [ and ]
+" map <D-;> <C-w>h
+" map <D-'> <C-w>l
+
+""""" maps enter to insert a new-line and shift enter to insert a line before the current line
+map <S-Enter> O<Esc>
+map <CR> o<Esc>
+
+nmap <silent><leader>cf <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 

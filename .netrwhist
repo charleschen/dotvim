@@ -1,5 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/Users/ccchen920/FiveStars/github/fivestars/loyalty/modelhooks'
 let g:netrw_dirhist_2='/Users/ccchen920/.emacs.d'
 let g:netrw_dirhist_3='/Users/ccchen920/github.repositories/guide-to-testing-in-django'
+let g:netrw_dirhist_4='/Users/ccchen920/.vim/bundle/vim-powerline/autoload/Powerline/Segments'
+let g:netrw_dirhist_5='/Users/ccchen920/.ipython'
+let g:netrw_dirhist_6='/Users/ccchen920/.vim'
+let g:netrw_dirhist_7='/Users/ccchen920/FiveStars/github/fivestars/fivestarscard.com/lib/python2.6/site-packages/requests'

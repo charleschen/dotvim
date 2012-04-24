@@ -16,3 +16,25 @@
 [submodule "bundle/soy"]
 	path = bundle/soy
 	url = https://github.com/duganchen/vim-soy.git
+[submodule "bundle/clam"]
+	path = bundle/clam
+	url = https://github.com/sjl/clam.vim.git
+[submodule "bundle/headlights"]
+	path = bundle/headlights
+	url = https://github.com/mbadran/headlights.git
+[submodule "bundle/tabman"]
+	path = bundle/tabman
+    url = https://github.com/kien/tabman.vim
+[submodule "bundle/command-t"]
+    path = bundle/command-t
+    url = https://github.com/wincent/Command-T.github
+[submodule "bundle/nerdtree"]
+    path = bundle/nerdtree 
+    url = https://github.com/scrooloose/nerdtree
+[submodule "bundle/snipmate.vim"]
+    path = bundle/snipmate.vim 
+    url = https://github.com/msanders/snipmate.vim.git
+[submodule "bundle/vim-surround"]
+    path = bundle/vim-surround 
+    url = https://github.com/tpope/vim-surround.git
+
