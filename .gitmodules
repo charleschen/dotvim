@@ -37,4 +37,10 @@
 [submodule "bundle/vim-surround"]
     path = bundle/vim-surround 
     url = https://github.com/tpope/vim-surround.git
+[submodule "bundle/python-mode"]
+	path = bundle/python-mode
+    url = git://github.com/klen/python-mode.git
+[submodule "bundle/vim-colors-solarized"]
+	path = bundle/vim-colors-solarized
+	url = git://github.com/altercation/vim-colors-solarized.git
 
