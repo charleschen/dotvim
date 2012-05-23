@@ -19,6 +19,7 @@ nmap <leader>w :w!<cr>
 " Vim user interface {{{
 " Set working directory to current file
 " autocmd BufEnter * lcd %:p:h
+set number
 set so=7
 set wildmenu
 set ruler
@@ -153,8 +154,7 @@ inoremap $t <><esc>i
 
     " Run current program
     au FileType python map <f9> :w<CR>:!python %<CR>
-
-    " Pythom Mode Stuff
+    Pythom Mode Stuff
     let g:pymode_lint_ignore = ""
 " }}}
 " JavaScript section {{{
@@ -319,6 +319,10 @@ if has("gui_macvim")
     nnoremap <silent> <SwipeRIght> :macaction _cycleWindows:<CR>
 endif
 " }}}
+" Fivestars stuff {{{
+nmap <leader><leader>f :cd ~/FiveStars/github/fivestars/loyalty<cr>
+nmap <leader><leader>cd :cd ~/FiveStars/github/fivestars/
+" }}}
 
 nmap <silent> <leader>/ :nohlsearch<CR>
 
@@ -326,10 +330,6 @@ nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 
 nmap <silent> <leader>ev :e $MYGVIMRC<cr>
 nmap <silent> <leader>sv :so $MYGVIMRC<cr>
-
-
-nmap <leader><leader>f :cd ~/FiveStars/github/fivestars/loyalty<cr>
-nmap <leader><leader>cd :cd ~/FiveStars/github/fivestars/
 
 nmap <leader>bs :BufExplorerHorizontalSplit<CR>
 nmap <leader>bv :BufExplorerVerticalSplit<CR>
@@ -343,8 +343,8 @@ endif
 " map <D-;> <C-w>h
 " map <D-'> <C-w>l
 
-""""" maps enter to insert a new-line and shift enter to insert a line before the current line {{{
+nmap <silent><leader>cf <ESC>/\v^[<=>]{7}( .*\|$)<CR>
+" maps enter to insert a new-line and shift enter to insert a line before the current line {{{
 map <S-Enter> O<Esc>
 map <CR> o<Esc>
 " }}}
-nmap <silent><leader>cf <ESC>/\v^[<=>]{7}( .*\|$)<CR>
