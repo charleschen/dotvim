@@ -45,7 +45,8 @@ set mat=2
 set gfn=Menlo:h12
 set shell=/bin/bash
 
-colorscheme solarized 
+colorscheme solarized
+let g:solarized_termcolor=256
 set background=light
 set t_Co=256
 
@@ -154,7 +155,7 @@ inoremap $t <><esc>i
 
     " Run current program
     au FileType python map <f9> :w<CR>:!python %<CR>
-    Pythom Mode Stuff
+    " Python Mode Stuff
     let g:pymode_lint_ignore = ""
 " }}}
 " JavaScript section {{{
@@ -271,6 +272,9 @@ inoremap $t <><esc>i
     " }}}
 
 """ Random Stuff: """
+" Substitute word under cursor/selection {{{
+nnoremap <C-s> :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
+" }}}
 " Chrome reload {{{
 function! ChromeReload()
 python << EOF
@@ -320,8 +324,8 @@ if has("gui_macvim")
 endif
 " }}}
 " Fivestars stuff {{{
-nmap <leader><leader>f :cd ~/FiveStars/github/fivestars/loyalty<cr>
-nmap <leader><leader>cd :cd ~/FiveStars/github/fivestars/
+nmap <leader><leader>f :cd ~/FiveStars/github/server/loyalty<cr>
+"nmap <leader><leader>cd :cd ~/FiveStars/github/server/
 " }}}
 
 nmap <silent> <leader>/ :nohlsearch<CR>
