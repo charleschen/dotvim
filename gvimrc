@@ -266,12 +266,6 @@ autocmd BufWrite {*.py,*.json} :call DeleteTrailingWS()
     " Ack {{{
         nmap <D-l> :Ack 
     " }}}
-    " Vimroom {{{
-        let g:vimroom_guibackground = "#fdf6e3"
-        let g:vimroom_width = 100
-        let g:vimroom_sidebar_height = 1
-        nnoremap <silent><Leader>v :VimroomToggle<CR>
-    " }}}
     " Tabman {{{
         map <silent><leader>t :TMToggle<CR>
         "let g:tabman_toggle = '<leader>mt'

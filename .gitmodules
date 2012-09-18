@@ -13,9 +13,6 @@
 [submodule "bundle/ack"]
 	path = bundle/ack
 	url = https://github.com/mileszs/ack.vim.git
-[submodule "bundle/vimroom"]
-	path = bundle/vimroom
-	url = https://github.com/mikewest/vimroom.git
 [submodule "bundle/soy"]
 	path = bundle/soy
 	url = https://github.com/duganchen/vim-soy.git
