@@ -1,7 +1,6 @@
-call pathogen#infect()
-call pathogen#helptags()
 syntax enable
-filetype plugin indent on
+filetype indent plugin on
+set ofu=syntaxcomplete#Complete
 " vim:fdm=marker
 
 set nocompatible
@@ -26,8 +25,15 @@ set ruler
 set cmdheight=2
 set hid
 
-set cc=100
-
+" ColorColumn highlighting {{{
+" Highlights 
+set colorcolumn=100 
+" augroup vimrc_autocmds
+" au!
+"    autocmd BufRead * highlight overLength ctermbg=red ctermfg=white guibg=red
+"    autocmd BufRead * match OverLength /\%100v.*/
+" augroup END
+" }}}
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
@@ -45,10 +51,8 @@ set mat=2
 set gfn=Menlo:h12
 set shell=/bin/bash
 
-colorscheme solarized
-let g:solarized_termcolor=256
-set background=light
-set t_Co=256
+colorscheme elrodeo
+"set t_Co=256
 
 set encoding=utf8
 try
@@ -57,7 +61,10 @@ catch
 endtry
 
 set ffs=unix,dos,mac
-set guitablabel=%t
+if has("gui_macvim")
+    set guitablabel=%t
+    set guioptions-=T
+end
 " }}}
 
 " Back up {{{
@@ -92,10 +99,14 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+" jumps quickly to open paren when closing parenthesis
+set showmatch
+set matchtime=2
 " Buffer Stuff {{{
-map <leader>bd :Bclose<cr>
-map <leader>ba :1,300 bd!<cr>
-map <leader>cd :cd %:p:h<cr>
+" map <leader>bd :Bclose<cr>
+" map <leader>ba :1,300 bd!<cr>
+" map <leader>cd :cd %:p:h<cr>
+
 " }}}
 " Statusline {{{
 set laststatus=2
@@ -127,12 +138,12 @@ inoremap $e ""<esc>i
 inoremap $t <><esc>i
 " }}}
 " Deleting Trailing White Spaces {{{
-    func! DeleteTrailingWS()
-        exe "normal mz"
-        %s/\s\+$//ge
-        exe "normal `z"
-    endfunc
-    autocmd BufWrite *.py :call DeleteTrailingWS()
+func! DeleteTrailingWS()
+    exe "normal mz"
+    %s/\s\+$//ge
+    exe "normal `z"
+endfunc
+autocmd BufWrite {*.py,*.json} :call DeleteTrailingWS()
 " }}}
 
 """ Language Related Stuff: """
@@ -192,18 +203,21 @@ inoremap $t <><esc>i
     " }}}
     " NERDTree {{{
         map <leader>f :NERDTreeToggle<cr>
+        nmap <leader><leader>w :NERDTreeFromBookmark fsweb<cr>
+        nmap <leader><leader>a :NERDTreeFromBookmark fsapi<cr>
+        nmap <leader><leader>c :NERDTreeFromBookmark fsclient<cr>
 
         let NERDTreeWinPos = 0
         let NERDTreeWinSize = 31
         let NERDTreeIgnore = ['\.vim$','\~$','\.png$','\.bmp$','\.jpg$','\.gif$','\.psd$','\.doc','\.ppt','\.xls','\.pdf$','\.exe$','\.lnk$','\.pyc$']
         let NERDTreeMouseMode = 3
     " }}}
-    " bufExplorer plugin {{{
-        let g:bufExplorerDefaultHelp=0
-        let g:bufExplorerShowRelativePath=1
-        let g:bufExplorerSplitBelow=1
-        let g:bufExplorerSplitRight=1
-        map <leader>o :BufExplorer<cr>
+    " MiniBufExplorer plugin {{{
+        map <leader>o :MiniBufExplorer<cr>
+        map <leader>c :TMiniBufExplorer<cr>
+
+        let g:miniBufExplSplitBelow=0
+        let g:miniBufExplSplitEdge=1
     " }}}
     " Omni complete functions {{{
         autocmd FileType python set omnifunc=pythoncomplete#Complete
@@ -215,7 +229,8 @@ inoremap $t <><esc>i
         autocmd FileType c set omnifunc=ccomplete#Complete
     " }}}
     " AutoComplete Popup {{{
-        let g:acp_behaviorSnipmateLength = 1
+"    let g:acp_enableAtStartup = 0
+    let g:acp_behaviorSnipmateLength = 1
     " }}}
     " Tagbar {{{
         let g:tagbar_usearrows = 1
@@ -267,6 +282,26 @@ inoremap $t <><esc>i
     " ZoomWin {{{
     nmap <silent> <leader>z :ZoomWin<cr>
     " }}}
+" NeoComplcache {{{
+"    let g:neocomplcache_enable_at_startup = 1
+"    let g:neocomplcache_enable_smart_case = 1
+"    let g:neocomplcache_camel_case_completion = 1
+"    let g:neocomplcache_enable_underbar_completion = 1
+"    let g:neocomplcache_min_syntax_length = 3
+"    let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+"
+"    let g:neocomplcache_dictionary_filetype_lists = {
+"    \ 'default' : '',
+"    \ 'vimshell' : $HOME.'/.vimshell_hist',
+"    \ 'scheme' : $HOME.'/.gosh_completions'
+"    \ }
+"
+"    imap <C-k>     <Plug>(neocomplcache_snippets_expand)
+"    smap <C-k>     <Plug>(neocomplcache_snippets_expand)
+" }}}
+" Numbers {{{
+    nnoremap <F3> :NumbersToggle<CR>
+" }}}
 
 """ Random Stuff: """
 " Substitute word under cursor/selection {{{
@@ -275,14 +310,14 @@ nnoremap <C-s> :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 " Chrome reload {{{
 function! ChromeReload()
 python << EOF
-    from subprocess import call
-    browser = """
-    tell application "Google Chrome" to tell the active tab of its first window
-        reload
-    end tell
-    tell application "Google Chrome" to activate
-    """
-    call(['osascript', '-e', browser])
+from subprocess import call
+browser = """
+tell application "Google Chrome" to tell the active tab of its first window
+    reload
+end tell
+tell application "Google Chrome" to activate
+"""
+call(['osascript', '-e', browser])
 EOF
 endfunction 
 map <leader>r :call ChromeReload()<CR>
@@ -322,7 +357,6 @@ endif
 " }}}
 " Fivestars stuff {{{
 nmap <leader><leader>f :cd ~/FiveStars/github/server/loyalty<cr>
-"nmap <leader><leader>cd :cd ~/FiveStars/github/server/
 " }}}
 
 nmap <silent> <leader>/ :nohlsearch<CR>
@@ -344,7 +378,9 @@ endif
 " map <D-;> <C-w>h
 " map <D-'> <C-w>l
 
-nmap <silent><leader>cf <ESC>/\v^[<=>]{7}( .*\|$)<CR>
+
+"nmap <silent><leader>cf <ESC>/\v^[<=>]{7}( .*\|$)<CR>
+
 " maps enter to insert a new-line and shift enter to insert a line before the current line {{{
 map <S-Enter> O<Esc>
 map <CR> o<Esc>

@@ -43,3 +43,18 @@
 [submodule "bundle/solarized"]
 	path = bundle/solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
+[submodule "bundle/elrodeo"]
+	path = bundle/elrodeo
+	url = https://github.com/chmllr/vim-colorscheme-elrodeo
+[submodule "bundle/pysmell"]
+	path = bundle/pysmell
+	url = https://github.com/orestis/pysmell.git
+[submodule "bundle/autocomplpop"]
+	path = bundle/autocomplpop
+	url = https://github.com/vim-scripts/AutoComplPop/
+[submodule "bundle/rainbow-parenthesis"]
+	path = bundle/rainbow-parenthesis
+	url = https://github.com/vim-scripts/Rainbow-Parenthesis
+[submodule "bundle/minibufexpl"]
+	path = bundle/minibufexpl
+	url = https://github.com/fholgado/minibufexpl.vim.git
