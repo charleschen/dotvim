@@ -58,3 +58,6 @@
 [submodule "bundle/minibufexpl"]
 	path = bundle/minibufexpl
 	url = https://github.com/fholgado/minibufexpl.vim.git
+[submodule "bundle/switch"]
+	path = bundle/switch
+	url = https://github.com/AndrewRadev/switch.vim
