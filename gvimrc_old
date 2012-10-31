@@ -2,19 +2,20 @@ syntax enable
 filetype indent plugin on
 set ofu=syntaxcomplete#Complete
 " vim:fdm=marker
-
 set nocompatible
 
 set history=700
 set autoread
 set hidden
+
 let mapleader = ","
 let g:mapleader = ","
-
-" Fast saving
-nmap <leader>w :w!<cr>
-
-
+set macmeta
+" tab space stuff {{{
+set expandtab
+set smarttab
+set tabstop=4 shiftwidth=4
+" }}}
 " Vim user interface {{{
 " Set working directory to current file
 " autocmd BufEnter * lcd %:p:h
@@ -66,7 +67,6 @@ if has("gui_macvim")
     set guioptions-=T
 end
 " }}}
-
 " Back up {{{
 set nowb
 set noswapfile
@@ -202,10 +202,7 @@ autocmd BufWrite {*.py,*.json} :call DeleteTrailingWS()
         endif
     " }}}
     " NERDTree {{{
-        map <leader>f :NERDTreeToggle<cr>
-        nmap <leader><leader>w :NERDTreeFromBookmark fsweb<cr>
-        nmap <leader><leader>a :NERDTreeFromBookmark fsapi<cr>
-        nmap <leader><leader>c :NERDTreeFromBookmark fsclient<cr>
+        map <leader>f :NERDTreeToggle<CR>
 
         let NERDTreeWinPos = 0
         let NERDTreeWinSize = 31
@@ -261,7 +258,7 @@ autocmd BufWrite {*.py,*.json} :call DeleteTrailingWS()
         "set g:Powerline_symbols = unicode
         "set Powerline_symbols = 'Menlo'
         let g:Powerline_cache_enabled = 1
-        let g:Powerline_symobls = 'fancy'
+        let g:Powerline_symbols = 'fancy'
     " }}}
     " Ack {{{
         nmap <D-l> :Ack 
@@ -293,8 +290,17 @@ autocmd BufWrite {*.py,*.json} :call DeleteTrailingWS()
 "    imap <C-k>     <Plug>(neocomplcache_snippets_expand)
 "    smap <C-k>     <Plug>(neocomplcache_snippets_expand)
 " }}}
-" Numbers {{{
-    nnoremap <F3> :NumbersToggle<CR>
+" Switch {{{
+    nnoremap - :Switch<cr>
+    let g:switch_definitions =
+        \[
+        \   ["if", "else", "elif"],
+        \   ["True", "False"],
+        \   {
+        \       "'\\(\\w\\+\\)'": '"\1"',
+        \       '"\(\w\+\)"': "'\\1'"
+        \   }
+        \]
 " }}}
 
 """ Random Stuff: """
@@ -316,11 +322,6 @@ EOF
 endfunction 
 map <leader>r :call ChromeReload()<CR>
 " }}}
-" tab space stuff {{{
-set expandtab
-set smarttab
-set tabstop=4 shiftwidth=4
-" }}}
 " tab controls {{{
 if has("gui_macvim")
     " emulate textmate's shift left/right key commands
@@ -338,19 +339,12 @@ if has("gui_macvim")
     vmap <D-k> :m'<-2<cr>`>my`<mzgv`yo`z
 endif
 " }}}
-" Remapping of CMD {{{
-if has("gui_macvim")
-    inoremap <D-CR> 
-endif
-" }}}
-" switch osx windows with swipes {{{
-if has("gui_macvim")
-    nnoremap <silent> <SwipeLeft> :macaction _cycleWindowsBackwards:<CR>
-    nnoremap <silent> <SwipeRIght> :macaction _cycleWindows:<CR>
-endif
-" }}}
+
 " Fivestars stuff {{{
-nmap <leader><leader>f :cd ~/FiveStars/github/server/loyalty<cr>
+    nmap <leader><leader>f :cd ~/FiveStars/github/server/loyalty<cr>
+    nmap <M-w> :NERDTreeFromBookmark fsweb<CR>
+    nmap <M-a> :NERDTreeFromBookmark fsapi<CR>
+    nmap <M-c> :NERDTreeFromBookmark fsclient<CR>
 " }}}
 
 nmap <silent> <leader>/ :nohlsearch<CR>
@@ -360,20 +354,10 @@ nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 nmap <silent> <leader>ev :e $MYGVIMRC<cr>
 nmap <silent> <leader>sv :so $MYGVIMRC<cr>
 
-nmap <leader>bs :BufExplorerHorizontalSplit<CR>
-nmap <leader>bv :BufExplorerVerticalSplit<CR>
-
 if has("gui_macvim")
 	macmenu &File.New\ Window key=<nop>
 	macmenu &File.New\ Tab key=<D-n>
 endif
-
-" navigate splits with command [ and ]
-" map <D-;> <C-w>h
-" map <D-'> <C-w>l
-
-
-"nmap <silent><leader>cf <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
 " maps enter to insert a new-line and shift enter to insert a line before the current line {{{
 map <S-Enter> O<Esc>
