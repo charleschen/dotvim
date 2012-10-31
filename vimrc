@@ -7,7 +7,7 @@ set nocompatible        " sets all config to default ones whether is vi or vim
 
 """ Vundle Stuff: """
 " Vundle setup {{{
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/vundle/
 call vundle#rc()
 " }}}
 " Bundle installed by Vundle {{{
