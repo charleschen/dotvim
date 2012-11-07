@@ -1,10 +1,8 @@
-Vim configuration
-================
+# Vim configuration
 
 - Using Vundle to bundle plugins
 
-Installation Instructions:
---------------------------
+## Installation Instructions:
 
 1.  Clone git repository
 2.  Update git submodule: git submodule update --init
@@ -16,8 +14,7 @@ Installation Instructions:
 5. (optional) for macvim there is a gvimrc config.  This is used to config macvim config, specificall
     to change mac key bindings.  vimrc is read too early so (un)mappings will not work there.
 
-Customization:
---------------
+## Customization:
 
 1.  Can load multiple vim config file, look for "Loading seperate vim configs".  Add/remove/modify
     extra vim configuration files here.
