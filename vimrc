@@ -34,6 +34,8 @@ Bundle "charleschen/minibufexpl.vim"
 Bundle "AndrewRadev/switch.vim"
 Bundle "zeekay/python.vim"
 Bundle "chrismetcalf/vim-autocomplpop"
+Bundle "nvie/vim-flake8"
+Bundle "majutsushi/tagbar"
 " }}}
 
 " Key Mappings: {{{
@@ -163,5 +165,5 @@ endfunction
 " }}}
 
 """ Loading seperate vim configs: {{{
-    exe "source" "~/.vim/charles_vimrc"
+    exe "source" "~/.vim/vimrc.$USER"
 " }}}
