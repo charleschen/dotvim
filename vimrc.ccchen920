@@ -83,9 +83,6 @@ endif
         let g:tabman_width = 25
         let g:tabman_side = 'left'
     " }}}
-    " ZoomWin {{{
-    nmap <silent> <leader>z :ZoomWin<cr>
-    " }}}
 " NeoComplcache {{{
 "    let g:neocomplcache_enable_at_startup = 1
 "    let g:neocomplcache_enable_smart_case = 1
@@ -110,8 +107,8 @@ endif
         \   ["if", "else", "elif"],
         \   ["True", "False"],
         \   {
-        \       "'\\(\\w\\+\\)'": '"\1"',
-        \       '"\(\w\+\)"': "'\\1'"
+        \    '"\(\k\+\)"':                '''\1''',
+        \     '''\(\k\+\)''':              '"\1"'
         \   }
         \]
 " }}}

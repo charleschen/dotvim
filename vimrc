@@ -36,6 +36,9 @@ Bundle "zeekay/python.vim"
 Bundle "chrismetcalf/vim-autocomplpop"
 Bundle "nvie/vim-flake8"
 Bundle "majutsushi/tagbar"
+Bundle "rking/vim-detailed"
+Bundle "maxbrunsfeld/vim-yankstack"
+Bundle "vim-scripts/vimwiki"
 " }}}
 
 " Key Mappings: {{{
