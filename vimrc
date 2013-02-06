@@ -29,16 +29,15 @@ Bundle "charleschen/vim-snipmate"
 Bundle "tpope/vim-surround"
 Bundle "mattn/zencoding-vim"
 Bundle "orestis/pysmell"
-Bundle "vim-scripts/AutoComplPop"
 Bundle "charleschen/minibufexpl.vim"
 Bundle "AndrewRadev/switch.vim"
 Bundle "zeekay/python.vim"
-Bundle "chrismetcalf/vim-autocomplpop"
 Bundle "nvie/vim-flake8"
 Bundle "majutsushi/tagbar"
 Bundle "rking/vim-detailed"
 Bundle "maxbrunsfeld/vim-yankstack"
 Bundle "vim-scripts/vimwiki"
+Bundle "Valloric/YouCompleteMe"
 " }}}
 
 " Key Mappings: {{{
