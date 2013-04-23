@@ -24,7 +24,7 @@ Bundle "kien/tabman.vim"
 Bundle "scrooloose/nerdtree"
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
-Bundle "honza/snipmate-snippets"
+Bundle "honza/vim-snippets"
 Bundle "charleschen/vim-snipmate"
 Bundle "tpope/vim-surround"
 Bundle "mattn/zencoding-vim"
@@ -34,10 +34,12 @@ Bundle "AndrewRadev/switch.vim"
 Bundle "zeekay/python.vim"
 Bundle "nvie/vim-flake8"
 Bundle "majutsushi/tagbar"
-Bundle "rking/vim-detailed"
 Bundle "maxbrunsfeld/vim-yankstack"
 Bundle "vim-scripts/vimwiki"
 Bundle "Valloric/YouCompleteMe"
+Bundle "vim-scripts/rdark"
+Bundle "mhinz/vim-signify"
+Bundle "lepture/vim-jinja"
 " }}}
 
 " Key Mappings: {{{
@@ -113,7 +115,7 @@ Bundle "Valloric/YouCompleteMe"
 " Python Section {{{
     let python_highlight_all = 1
     au FileType python syn keyword pythonDecorator True None False self
-    au BufNewFile,BufRead *.jinja set syntax=htmljinja
+    au BufNewFile,BufRead *.jinja set ft=jinja
     au BufNewFile,BufRead *.mako set ft=mako
     au FileType python inoremap <buffer> $r return
     au FileType python inoremap <buffer> $i import

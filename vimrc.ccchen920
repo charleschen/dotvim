@@ -1,7 +1,7 @@
 " vim:foldmethod=marker
 
 if has('gui_running')
-    colorscheme elrodeo
+    colorscheme rdark
     set guioptions-=T
 else
     colorscheme pychimp
@@ -64,7 +64,6 @@ endif
         let g:surround_{char2nr("v")} = "{{ \1 \r..*\r &\1\r }}"
     " }}}
     " Vimwiki {{{
-        nmap <silent><Leader>w :VimwikiIndex<cr>
     " }}}
     " Powerline {{{
         "set Powerline_cache_enabled = 1
@@ -139,8 +138,8 @@ if has("gui_macvim")
 endif
 " }}}
 " Fivestars stuff {{{
-    nmap <leader><leader>f :cd ~/FiveStars/github/server/loyalty<cr>
-    nmap <M-w> :NERDTreeFromBookmark fsweb<CR>
+    nmap <leader><leader>f :cd ~/FiveStars/github/server/fsflask<cr>
+    nmap <M-w> :NERDTreeFromBookmark fsflask<CR>
     nmap <M-a> :NERDTreeFromBookmark fsapi<CR>
     nmap <M-c> :NERDTreeFromBookmark fsclient<CR>
 " }}}
@@ -151,4 +150,3 @@ nmap <silent> <leader>/ :nohlsearch<CR>
 map <S-Enter> O<Esc>
 map <CR> o<Esc>
 " }}}
-
