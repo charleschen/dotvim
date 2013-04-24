@@ -112,6 +112,15 @@ Bundle "lepture/vim-jinja"
 " }}}
 
 """ Language Related Stuff: """
+" Soy Section {{{
+    au BufRead,BufNewFile *.soy set filetype=soy
+    au FileType soy setlocal sw=2 sts=2 et
+" }}}
+
+" HTML Section {{{
+    au FileType html setlocal sw=2 sts=2 et
+" }}}
+
 " Python Section {{{
     let python_highlight_all = 1
     au FileType python syn keyword pythonDecorator True None False self
@@ -131,6 +140,7 @@ Bundle "lepture/vim-jinja"
     let g:pymode_lint_ignore = ""
 " }}}
 " JavaScript section {{{
+    au FileType javascript setlocal sw=2 sts=2 et
     au FileType javascript call JavaScriptFold()
     au FileType javascript setl fen
     au FileType javascript setl nocindent
