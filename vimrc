@@ -40,6 +40,7 @@ Bundle "Valloric/YouCompleteMe"
 Bundle "vim-scripts/rdark"
 Bundle "mhinz/vim-signify"
 Bundle "lepture/vim-jinja"
+Bundle "vim-javascript"
 " }}}
 
 " Key Mappings: {{{
