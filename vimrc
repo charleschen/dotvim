@@ -119,6 +119,11 @@ Bundle "Yggdroot/indentLine"
     au BufRead,BufNewFile *.soy set filetype=soy
     au FileType soy setlocal sw=2 sts=2 et
 " }}}
+"
+" LESS Section {{{
+    au BufNewFile,BufRead *.less set ft=less
+    au FileType less setlocal sw=2 sts=2 et
+" }}}
 
 " HTML Section {{{
     au FileType html setlocal sw=2 sts=2 et
