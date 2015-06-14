@@ -11,6 +11,7 @@ endif
 """ Vim Plugins Configurations: """
     " Command-T {{{
         let g:CommandTMaxHeight = 15
+        let g:CommandTTraverseSCM = "pwd"
         set wildignore+=*.o,*.obj,.git,*.pyc
         if has("gui_macvim")
             map <D-t> :CommandT<CR>
@@ -65,8 +66,6 @@ endif
         let g:surround_{char2nr("f")} = "{% for\1 \r..*\r &\1%}\r{% endfor %}"
         let g:surround_{char2nr("v")} = "{{ \1 \r..*\r &\1\r }}"
     " }}}
-    " Vimwiki {{{
-    " }}}
     " Powerline {{{
         "set Powerline_cache_enabled = 1
         "set g:Powerline_symbols = unicode
@@ -102,7 +101,7 @@ endif
 "    smap <C-k>     <Plug>(neocomplcache_snippets_expand)
 " }}}
 " Switch {{{
-    nnoremap - :Switch<cr>
+    " nnoremap - :Switch<cr>
     let g:switch_definitions =
         \[
         \   ["if", "else", "elif"],
@@ -112,6 +111,12 @@ endif
         \     '''\(\k\+\)''':              '"\1"'
         \   }
         \]
+" }}}
+" vim-notes {{{
+    let g:notes_directories = ['~/Notes']    
+" }}}
+" jshint2.vim {{{
+    :map <F8> :JSHint<CR>
 " }}}
 
 """ Visual mode related
@@ -140,10 +145,42 @@ if has("gui_macvim")
 endif
 " }}}
 " Fivestars stuff {{{
-    nmap <leader><leader>f :cd ~/FiveStars/github/server/loyalty<cr>
+    function! SetupFivestars()
+        :cd ~/FiveStars/github/server/loyalty
+        :let g:flake8_cmd="/Users/charles/fivestars/github/server/fivestarscard.com/bin/flake8"
+        :let g:jshint2_command="/Users/charles/fivestars/github/server/3rdparty/bin/jshint"
+    endfunction
+
+    function! SetupRicola()
+        :cd ~/FiveStars/github/ricola/src
+        :let g:flake8_cmd="/Users/charles/fivestars/github/server/fivestarscard.com/bin/flake8"
+        :let g:jshint2_command="/Users/charles/fivestars/github/server/3rdparty/bin/jshint"
+    endfunction
+
+    nmap <leader><leader>f :exec SetupFivestars()<cr>
+    nmap <leader><leader>r :exec SetupRicola()<cr>
     nmap <M-w> :NERDTreeFromBookmark fsflask<CR>
     nmap <M-a> :NERDTreeFromBookmark fsapi<CR>
     nmap <M-c> :NERDTreeFromBookmark fsclient<CR>
+" }}}
+"
+" Dogbox stuff {{{
+    nmap <leader><leader>d :cd ~/github/dog-box/dogbox<cr>
+" }}}
+
+" Dripclub stuff{{{
+    function! SetupDripclub()
+        :cd ~/github/dripclub/server
+        :let g:flake8_cmd="/usr/local/bin/flake8"
+    endfunction
+"   nmap <leader><leader>r :exec SetupDripclub()<cr>
+" }}}
+
+" Orca stuff{{{
+    function! SetupGame()
+        :cd ~/github/orca/src
+    endfunction
+    nmap <leader><leader>o :exec SetupGame()<cr>
 " }}}
 
 nmap <silent> <leader>/ :nohlsearch<CR>

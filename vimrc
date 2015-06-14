@@ -35,14 +35,22 @@ Bundle "zeekay/python.vim"
 Bundle "nvie/vim-flake8"
 Bundle "majutsushi/tagbar"
 Bundle "maxbrunsfeld/vim-yankstack"
-Bundle "vim-scripts/vimwiki"
 Bundle "Valloric/YouCompleteMe"
 Bundle "vim-scripts/rdark"
 Bundle "mhinz/vim-signify"
 Bundle "lepture/vim-jinja"
-Bundle "jelera/vim-javascript-syntax"
+" Bundle "jelera/vim-javascript-syntax"
+Bundle "pangloss/vim-javascript"
 Bundle "kshenoy/vim-origami"
 Bundle "Yggdroot/indentLine"
+Bundle "szw/vim-ctrlspace"
+Bundle "tpope/vim-vinegar"
+Bundle "othree/javascript-libraries-syntax.vim"
+Bundle "marijnh/tern_for_vim"
+Bundle "xolox/vim-misc"
+Bundle "xolox/vim-notes"
+Bundle "Shutnik/jshint2.vim"
+Bundle "q335r49/microviche"
 " }}}
 
 " Key Mappings: {{{
@@ -119,10 +127,20 @@ Bundle "Yggdroot/indentLine"
     au BufRead,BufNewFile *.soy set filetype=soy
     au FileType soy setlocal sw=2 sts=2 et
 " }}}
-"
+
+" CSS Section {{{
+    au BufNewFile,BufRead *.css set ft=css
+    au FileType css setlocal sw=2 sts=2 et
+" }}}
+
 " LESS Section {{{
     au BufNewFile,BufRead *.less set ft=less
     au FileType less setlocal sw=2 sts=2 et
+" }}}
+
+" SCSS Section {{{
+    au BufNewFile,BufRead *.scss set ft=scss
+    au FileType scss setlocal sw=2 sts=2 et
 " }}}
 
 " HTML Section {{{
@@ -137,11 +155,7 @@ Bundle "Yggdroot/indentLine"
 " Python Section {{{
     let python_highlight_all = 1
     au FileType python syn keyword pythonDecorator True None False self
-    au BufNewFile,BufRead *.mako set ft=mako
-    au FileType python inoremap <buffer> $r return
-    au FileType python inoremap <buffer> $i import
-    au FileType python inoremap <buffer> $p print
-    au FileType python inoremap <buffer> $f #--- PH ----------------------------------------------<esc>FP2xi
+    au BufNewFile,BufRead wscript set ft=python
     au FileType python map <buffer> <leader>1 /class
     au FileType python map <buffer> <leader>2 /def
     au FileType python map <buffer> <leader>C ?class
@@ -158,7 +172,6 @@ Bundle "Yggdroot/indentLine"
     au FileType javascript setl nocindent
     au FileType javascript imap <c-t> AJS.log();<esc>hi
     au FileType javascript imap <c-a> alert();<esc>hi
-    au FileType javascript inoremap <buffer> $r return
     au FileType javascript inoremap <buffer> $f //--- PH ----------------------------------------------<esc>FP2xi
 "    function! JavaScriptFold()
 "        setl foldmethod=syntax
@@ -178,7 +191,7 @@ func! DeleteTrailingWS()
     %s/\s\+$//ge
     exe "normal `z"
 endfunc
-autocmd BufWrite {*.py,*.json} :call DeleteTrailingWS()
+autocmd BufWrite {*.py,*.json,*.js,*.html,*.jinja} :call DeleteTrailingWS()
 " }}}
 " paste {{{
 function! HasPaste()
