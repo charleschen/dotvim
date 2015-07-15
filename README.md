@@ -22,6 +22,6 @@
 -   By default will try to look for "~/.vim/{USERNAME}_vimrc" for personal vim config
 -   
 
- |  
+branch | meh 
 --- | ---
 werd | werd
