@@ -68,9 +68,9 @@ endif
     " }}}
     " Powerline {{{
         "set Powerline_cache_enabled = 1
-        "set g:Powerline_symbols = unicode
-        "set Powerline_symbols = 'Menlo'
-        let g:Powerline_cache_enabled = 1
+        " set g:Powerline_symbols = unicode
+        " set Powerline_symbols = 'Menlo'
+        " let g:Powerline_cache_enabled = 1
         let g:Powerline_symbols = "fancy"
     " }}}
     " Ack {{{
@@ -118,6 +118,9 @@ endif
 " jshint2.vim {{{
     :map <F8> :JSHint<CR>
 " }}}
+" vim-signify {{{
+"  :SignifyToggle
+" }}}
 
 """ Visual mode related
 vnoremap <silent> * :call VisualSearch('f')<CR>
@@ -144,43 +147,29 @@ if has("gui_macvim")
     vmap <D-k> :m'<-2<cr>`>my`<mzgv`yo`z
 endif
 " }}}
-" Fivestars stuff {{{
-    function! SetupFivestars()
-        :cd ~/FiveStars/github/server/loyalty
-        :let g:flake8_cmd="/Users/charles/fivestars/github/server/fivestarscard.com/bin/flake8"
-        :let g:jshint2_command="/Users/charles/fivestars/github/server/3rdparty/bin/jshint"
-    endfunction
-
-    function! SetupRicola()
-        :cd ~/FiveStars/github/ricola/src
-        :let g:flake8_cmd="/Users/charles/fivestars/github/server/fivestarscard.com/bin/flake8"
-        :let g:jshint2_command="/Users/charles/fivestars/github/server/3rdparty/bin/jshint"
-    endfunction
-
-    nmap <leader><leader>f :exec SetupFivestars()<cr>
-    nmap <leader><leader>r :exec SetupRicola()<cr>
-    nmap <M-w> :NERDTreeFromBookmark fsflask<CR>
-    nmap <M-a> :NERDTreeFromBookmark fsapi<CR>
-    nmap <M-c> :NERDTreeFromBookmark fsclient<CR>
-" }}}
-"
-" Dogbox stuff {{{
-    nmap <leader><leader>d :cd ~/github/dog-box/dogbox<cr>
-" }}}
-
-" Dripclub stuff{{{
-    function! SetupDripclub()
-        :cd ~/github/dripclub/server
-        :let g:flake8_cmd="/usr/local/bin/flake8"
-    endfunction
-"   nmap <leader><leader>r :exec SetupDripclub()<cr>
-" }}}
 
 " Orca stuff{{{
     function! SetupGame()
         :cd ~/github/orca/src
     endfunction
     nmap <leader><leader>o :exec SetupGame()<cr>
+" }}}
+
+" Baylab stuff{{{
+    function! SetupBaylabsIO()
+        :cd ~/baylabs/github/baylabs.io
+        :let g:flake8_cmd="/Users/ccchen920/workspace/bin/flake8"
+    endfunction
+    nmap <leader><leader>b :cd ~/baylabs/github<cr>
+    nmap <leader><leader>bw :exec SetupBaylabsIO()<cr>
+" }}}
+
+" CareSprout stuff {{{
+    function! SetupCareSprout()
+        :cd ~/CareSprout/git/workspace/caresprout
+        :let g:flake8_cmd="/Users/ccchen920/workspace/bin/flake8"
+    endfunction
+    nmap <leader><leader>c :exec SetupCareSprout()<cr>
 " }}}
 
 nmap <silent> <leader>/ :nohlsearch<CR>

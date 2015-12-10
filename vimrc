@@ -27,7 +27,7 @@ Bundle "tomtom/tlib_vim"
 Bundle "honza/vim-snippets"
 Bundle "charleschen/vim-snipmate"
 Bundle "tpope/vim-surround"
-Bundle "mattn/zencoding-vim"
+Bundle "mattn/emmet-vim"
 Bundle "orestis/pysmell"
 Bundle "techlivezheng/vim-plugin-minibufexpl"
 Bundle "AndrewRadev/switch.vim"
@@ -51,6 +51,8 @@ Bundle "xolox/vim-misc"
 Bundle "xolox/vim-notes"
 Bundle "Shutnik/jshint2.vim"
 Bundle "q335r49/microviche"
+Bundle "chase/vim-ansible-yaml"
+Bundle "hynek/vim-python-pep8-indent"
 " }}}
 
 " Key Mappings: {{{
@@ -83,7 +85,7 @@ Bundle "q335r49/microviche"
     set number          " turns on line numbers
     set colorcolumn=100 
     set laststatus=2    " always shows status line for the last window
-    set gfn=Menlo:h12   
+    set gfn=Menlo:h13
     set shell=/bin/bash
     set history=700
     set wildmenu        " invokes tab completion for command-line
@@ -123,9 +125,17 @@ Bundle "q335r49/microviche"
 " }}}
 
 """ Language Related Stuff: """
+" json Section {{{
+    au FileType json setlocal sw=2 sts=2 et
+" }}}
+
 " Soy Section {{{
     au BufRead,BufNewFile *.soy set filetype=soy
     au FileType soy setlocal sw=2 sts=2 et
+" }}}
+
+" YAML Section {{{
+    au FileType yaml setlocal sw=2 sts=2 et
 " }}}
 
 " CSS Section {{{
@@ -145,11 +155,20 @@ Bundle "q335r49/microviche"
 
 " HTML Section {{{
     au FileType html setlocal sw=2 sts=2 et
+    au FileType htmldjango setlocal sw=2 sts=2 et
+" }}}
+
+" CPP Section {{{
+    au FileType cpp setlocal sw=2 sts=2 et
 " }}}
 
 " Jinja Section {{{
     au BufNewFile,BufRead *.jinja set ft=jinja
     au FileType jinja setlocal sw=2 sts=2 et
+" }}}
+
+" Ruby Section {{{
+    au BufNewFile,BufRead Vagrantfile set ft=ruby
 " }}}
 
 " Python Section {{{
@@ -165,6 +184,7 @@ Bundle "q335r49/microviche"
     " Python Mode Stuff
     let g:pymode_lint_ignore = ""
 " }}}
+
 " JavaScript section {{{
     au FileType javascript setlocal sw=2 sts=2 et
     " au FileType javascript call JavaScriptFold()
