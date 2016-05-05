@@ -14,7 +14,7 @@ call vundle#rc()
 Bundle "gmarik/vundle"
 Bundle "charleschen/Pychimp-vim"
 Bundle "chmllr/vim-colorscheme-elrodeo"
-Bundle "git://git.wincent.com/command-t.git"
+" Bundle "git://git.wincent.com/command-t.git"
 Bundle "tpope/vim-fugitive"
 Bundle "Lokaltog/vim-powerline"
 Bundle "mileszs/ack.vim"
@@ -53,6 +53,7 @@ Bundle "Shutnik/jshint2.vim"
 Bundle "q335r49/microviche"
 Bundle "chase/vim-ansible-yaml"
 Bundle "hynek/vim-python-pep8-indent"
+Bundle "ctrlpvim/ctrlp.vim"
 " }}}
 
 " Key Mappings: {{{
@@ -85,7 +86,7 @@ Bundle "hynek/vim-python-pep8-indent"
     set number          " turns on line numbers
     set colorcolumn=100 
     set laststatus=2    " always shows status line for the last window
-    set gfn=Menlo:h13
+    set gfn=Menlo:h14
     set shell=/bin/bash
     set history=700
     set wildmenu        " invokes tab completion for command-line
@@ -164,6 +165,7 @@ Bundle "hynek/vim-python-pep8-indent"
 
 " Jinja Section {{{
     au BufNewFile,BufRead *.jinja set ft=jinja
+    au BufNewFile,BufRead *.j2 set ft=jinja
     au FileType jinja setlocal sw=2 sts=2 et
 " }}}
 
@@ -202,6 +204,10 @@ Bundle "hynek/vim-python-pep8-indent"
 "        endfunction
 "        setl foldtext=FoldText()
 "    endfunction
+" }}}
+
+" Protobuf section {{{
+    au FileType proto setlocal sw=2 sts=2 et
 " }}}
 
 """ Cool Configurations/shortcuts: """

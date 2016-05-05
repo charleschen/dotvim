@@ -8,15 +8,28 @@ else
     colorscheme pychimp
 endif
 
+set wildignore+=*.o,*.obj,.git,*.pyc
+
 """ Vim Plugins Configurations: """
     " Command-T {{{
-        let g:CommandTMaxHeight = 15
-        let g:CommandTTraverseSCM = "pwd"
-        set wildignore+=*.o,*.obj,.git,*.pyc
+        " let g:CommandTMaxHeight = 15
+        " let g:CommandTTraverseSCM = "pwd"
+        " if has("gui_macvim")
+        "     map <D-t> :CommandT<CR>
+        "     map <D-r> :CommandTFlush<CR>
+        " else
+        "     nmap <leader><leader>t :CommandT<CR>
+        "     nmap <leader><leader>r :CommandTFlush<CR>
+        " endif
+    " }}}
+    " CtrlP {{{
+        " let g:CommandTMaxHeight = 15
+        " let g:CommandTTraverseSCM = "pwd"
         if has("gui_macvim")
-            map <D-t> :CommandT<CR>
-            map <D-r> :CommandTFlush<CR>
+            map <D-t> :CtrlPMixed<CR>
         endif
+        let g:ctrlp_working_path_mode = 'w'
+        let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:10'
     " }}}
     " NERDTree {{{
         map <leader>f :NERDTreeToggle<CR>
@@ -46,8 +59,8 @@ endif
     let g:acp_behaviorSnipmateLength = 1
     " }}}
     " Tagbar {{{
-        let g:tagbar_usearrows = 1
-        nnoremap <leader>l :TagbarToggle<CR>
+        " let g:tagbar_usearrows = 1
+        " nnoremap <leader>l :TagbarToggle<CR>
     " }}}
     " VIm grep {{{
         let Grep_Skip_Dirs = 'RCS CVS SCCS .svn generated'
@@ -157,17 +170,17 @@ endif
 
 " Baylab stuff{{{
     function! SetupBaylabsIO()
-        :cd ~/baylabs/github/baylabs.io
-        :let g:flake8_cmd="/Users/ccchen920/workspace/bin/flake8"
+        :cd ~/baylabs/github/
+        :let g:flake8_cmd="/Users/churros/workspace/bin/flake8"
+        :set colorcolumn=79
     endfunction
-    nmap <leader><leader>b :cd ~/baylabs/github<cr>
-    nmap <leader><leader>bw :exec SetupBaylabsIO()<cr>
+    nmap <leader><leader>b :exec SetupBaylabsIO()<cr>
 " }}}
 
 " CareSprout stuff {{{
     function! SetupCareSprout()
         :cd ~/CareSprout/git/workspace/caresprout
-        :let g:flake8_cmd="/Users/ccchen920/workspace/bin/flake8"
+        :let g:flake8_cmd="/Users/churros/workspace/bin/flake8"
     endfunction
     nmap <leader><leader>c :exec SetupCareSprout()<cr>
 " }}}
