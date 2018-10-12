@@ -16,7 +16,8 @@ Bundle "charleschen/Pychimp-vim"
 Bundle "chmllr/vim-colorscheme-elrodeo"
 " Bundle "git://git.wincent.com/command-t.git"
 Bundle "tpope/vim-fugitive"
-Bundle "Lokaltog/vim-powerline"
+Bundle "vim-airline/vim-airline"
+Bundle "vim-airline/vim-airline-themes"
 Bundle "mileszs/ack.vim"
 Bundle "duganchen/vim-soy"
 Bundle "sjl/clam.vim"
@@ -54,6 +55,11 @@ Bundle "q335r49/microviche"
 Bundle "chase/vim-ansible-yaml"
 Bundle "hynek/vim-python-pep8-indent"
 Bundle "ctrlpvim/ctrlp.vim"
+Bundle "w0rp/ale"
+Bundle "dracula/vim"
+Bundle "vim-multiple-cursors"
+Bundle "modille/groovy.vim"
+" Bundle "vim-scripts/groovyindent-unix"
 " }}}
 
 " Key Mappings: {{{
@@ -86,7 +92,7 @@ Bundle "ctrlpvim/ctrlp.vim"
     set number          " turns on line numbers
     set colorcolumn=100 
     set laststatus=2    " always shows status line for the last window
-    set gfn=Menlo:h14
+    set gfn=Menlo:h15
     set shell=/bin/bash
     set history=700
     set wildmenu        " invokes tab completion for command-line
@@ -126,6 +132,15 @@ Bundle "ctrlpvim/ctrlp.vim"
 " }}}
 
 """ Language Related Stuff: """
+" Groovy Section {{{
+    au BufNewFile,BufRead *.groovy  setf groovy 
+    au BufNewFile,BufRead Jenkinsfile.*,Jenkinsfile  setf groovy 
+" }}}
+
+" Dockerfile Section {{{
+    au BufNewFile,BufRead Dockerfile.* set ft=dockerfile
+" }}}
+
 " json Section {{{
     au FileType json setlocal sw=2 sts=2 et
 " }}}
