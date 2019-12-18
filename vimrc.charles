@@ -140,6 +140,9 @@ set wildignore+=*.o,*.obj,.git,*.pyc
 " }}}
 " ale {{{
 " }}}
+" indentLine {{{
+let g:indentLine_setConceal = 1
+" }}}
 
 """ Visual mode related
 vnoremap <silent> * :call VisualSearch('f')<CR>

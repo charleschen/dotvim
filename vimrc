@@ -18,8 +18,8 @@ Bundle "chmllr/vim-colorscheme-elrodeo"
 Bundle "tpope/vim-fugitive"
 Bundle "vim-airline/vim-airline"
 Bundle "vim-airline/vim-airline-themes"
-Bundle "mileszs/ack.vim"
-Bundle "duganchen/vim-soy"
+" Bundle "mileszs/ack.vim"
+" Bundle "duganchen/vim-soy"
 Bundle "sjl/clam.vim"
 Bundle "kien/tabman.vim"
 Bundle "scrooloose/nerdtree"
@@ -28,8 +28,8 @@ Bundle "tomtom/tlib_vim"
 Bundle "honza/vim-snippets"
 Bundle "charleschen/vim-snipmate"
 Bundle "tpope/vim-surround"
-Bundle "mattn/emmet-vim"
-Bundle "orestis/pysmell"
+" Bundle "mattn/emmet-vim"
+" Bundle "orestis/pysmell"
 Bundle "techlivezheng/vim-plugin-minibufexpl"
 Bundle "AndrewRadev/switch.vim"
 Bundle "zeekay/python.vim"
@@ -51,15 +51,16 @@ Bundle "marijnh/tern_for_vim"
 Bundle "xolox/vim-misc"
 Bundle "xolox/vim-notes"
 Bundle "Shutnik/jshint2.vim"
-Bundle "q335r49/microviche"
+" Bundle "q335r49/microviche"
 Bundle "chase/vim-ansible-yaml"
 Bundle "hynek/vim-python-pep8-indent"
 Bundle "ctrlpvim/ctrlp.vim"
-Bundle "w0rp/ale"
+" Bundle "w0rp/ale"
 Bundle "dracula/vim"
 Bundle "vim-multiple-cursors"
 Bundle "modille/groovy.vim"
 " Bundle "vim-scripts/groovyindent-unix"
+Bundle "elzr/vim-json"
 " }}}
 
 " Key Mappings: {{{
@@ -92,7 +93,7 @@ Bundle "modille/groovy.vim"
     set number          " turns on line numbers
     set colorcolumn=100 
     set laststatus=2    " always shows status line for the last window
-    set gfn=Menlo:h15
+    set gfn=Menlo:h13
     set shell=/bin/bash
     set history=700
     set wildmenu        " invokes tab completion for command-line
@@ -143,6 +144,8 @@ Bundle "modille/groovy.vim"
 
 " json Section {{{
     au FileType json setlocal sw=2 sts=2 et
+    let g:vim_json_syntax_conceal = 0
+    " autocmd Filetype json let g:indentLine_setConceal = 0
 " }}}
 
 " Soy Section {{{
